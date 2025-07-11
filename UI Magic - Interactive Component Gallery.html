@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Awesome Button Gallery - abbas davarpanah</title>
+  <style>
+    :root {
+      --primary: #6c63ff;
+      --secondary: #ff6584;
+      --accent: #43e97b;
+      --bg-light: #f5f6fa;
+      --bg-dark: #181a1b;
+      --text-light: #222;
+      --text-dark: #f5f6fa;
+      --shadow: 0 4px 24px rgba(0,0,0,0.12);
+      --radius: 2.5em;
+      --transition: 0.3s cubic-bezier(.4,2,.6,1);
+    }
+    html[data-theme='dark'] {
+      --bg: var(--bg-dark);
+      --text: var(--text-dark);
+    }
+    html[data-theme='light'] {
+      --bg: var(--bg-light);
+      --text: var(--text-light);
+    }
+    html {
+      --bg: var(--bg-light);
+      --text: var(--text-light);
+      background: var(--bg);
+      color: var(--text);
+      transition: background var(--transition), color var(--transition);
+    }
+    body {
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      transition: background var(--transition), color var(--transition);
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2em 1em 4em 1em;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2em;
+    }
+    .title {
+      font-size: 2.5em;
+      font-weight: 800;
+      letter-spacing: 1px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .author {
+      font-size: 1em;
+      opacity: 0.7;
+      font-weight: 500;
+    }
+    .theme-toggle {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 2em;
+      padding: 0.6em 1.5em;
+      font-size: 1em;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: background var(--transition), color var(--transition);
+      outline: none;
+      margin-left: 1em;
+    }
+    .theme-toggle:active {
+      background: var(--secondary);
+    }
+    section {
+      margin-bottom: 2.5em;
+    }
+    h2 {
+      font-size: 1.5em;
+      margin-bottom: 1em;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2em;
+      margin-bottom: 2em;
+    }
+    .btn-demo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.7em;
+      background: rgba(0,0,0,0.03);
+      border-radius: 1.5em;
+      padding: 1.5em 1em;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: background var(--transition), box-shadow var(--transition);
+      position: relative;
+    }
+    .btn-demo .btn-label {
+      font-size: 1.1em;
+      font-weight: 600;
+      margin-top: 0.5em;
+      letter-spacing: 0.5px;
+    }
+    .btn-demo .btn-code {
+      margin-top: 0.5em;
+      background: var(--secondary);
+      color: #fff;
+      border: none;
+      border-radius: 1em;
+      padding: 0.3em 1.2em;
+      font-size: 0.95em;
+      cursor: pointer;
+      transition: background var(--transition);
+      outline: none;
+    }
+    .btn-demo .btn-code:active {
+      background: var(--primary);
+    }
+    /* Capsule Button */
+    .btn-capsule {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 0.9em 2.5em;
+      font-size: 1.2em;
+      font-weight: 700;
+      box-shadow: 0 4px 24px rgba(108,99,255,0.18);
+      cursor: pointer;
+      transition: transform 0.18s cubic-bezier(.4,2,.6,1), box-shadow var(--transition);
+      outline: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-capsule:active {
+      transform: scale(0.97);
+      box-shadow: 0 2px 8px rgba(108,99,255,0.12);
+    }
+    /* 3D Button */
+    .btn-3d {
+      background: var(--secondary);
+      color: #fff;
+      border: none;
+      border-radius: 1.5em;
+      padding: 1em 2.2em;
+      font-size: 1.2em;
+      font-weight: 700;
+      box-shadow: 0 8px 0 #c13b5a, 0 4px 24px rgba(255,101,132,0.18);
+      cursor: pointer;
+      transition: transform 0.15s cubic-bezier(.4,2,.6,1), box-shadow var(--transition);
+      outline: none;
+      position: relative;
+    }
+    .btn-3d:active {
+      transform: translateY(4px);
+      box-shadow: 0 4px 0 #c13b5a, 0 2px 8px rgba(255,101,132,0.12);
+    }
+    /* Fantasy Button */
+    .btn-fantasy {
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+      color: #6c63ff;
+      border: 2px solid #6c63ff;
+      border-radius: 2em;
+      padding: 0.9em 2.2em;
+      font-size: 1.2em;
+      font-weight: 700;
+      box-shadow: 0 4px 24px rgba(252,182,159,0.18);
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), border var(--transition), box-shadow var(--transition);
+      outline: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-fantasy:before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(108,99,255,0.12);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s cubic-bezier(.4,2,.6,1), height 0.4s cubic-bezier(.4,2,.6,1);
+      z-index: 0;
+    }
+    .btn-fantasy:active:before {
+      width: 220%;
+      height: 220%;
+    }
+    .btn-fantasy span {
+      position: relative;
+      z-index: 1;
+    }
+    /* Glassmorphism Button */
+    .btn-glass {
+      background: rgba(255,255,255,0.18);
+      color: var(--primary);
+      border: 2px solid rgba(108,99,255,0.18);
+      border-radius: 2em;
+      padding: 0.9em 2.2em;
+      font-size: 1.2em;
+      font-weight: 700;
+      box-shadow: 0 4px 24px rgba(108,99,255,0.10);
+      backdrop-filter: blur(6px);
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), border var(--transition), box-shadow var(--transition);
+      outline: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-glass:active {
+      background: rgba(108,99,255,0.12);
+      color: #fff;
+      border: 2px solid var(--primary);
+    }
+    /* Neon Button */
+    .btn-neon {
+      background: #181a1b;
+      color: #43e97b;
+      border: 2px solid #43e97b;
+      border-radius: 2em;
+      padding: 0.9em 2.2em;
+      font-size: 1.2em;
+      font-weight: 700;
+      box-shadow: 0 0 16px #43e97b, 0 4px 24px rgba(67,233,123,0.10);
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), border var(--transition), box-shadow var(--transition);
+      outline: none;
+      position: relative;
+      overflow: hidden;
+      text-shadow: 0 0 8px #43e97b;
+    }
+    .btn-neon:active {
+      background: #43e97b;
+      color: #181a1b;
+      border: 2px solid #181a1b;
+      box-shadow: 0 0 32px #43e97b;
+    }
+    /* Sliding Buttons */
+    .slide-btn {
+      position: relative;
+      display: inline-block;
+      min-width: 180px;
+      min-height: 48px;
+      border: none;
+      border-radius: 2em;
+      font-size: 1.1em;
+      font-weight: 700;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--primary);
+      color: #fff;
+      box-shadow: var(--shadow);
+      transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+      outline: none;
+    }
+    .slide-btn .slide-bg {
+      position: absolute;
+      left: -100%;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--secondary);
+      z-index: 0;
+      transition: left 0.4s cubic-bezier(.4,2,.6,1);
+    }
+    .slide-btn:hover .slide-bg {
+      left: 0;
+    }
+    .slide-btn span {
+      position: relative;
+      z-index: 1;
+      transition: color var(--transition);
+    }
+    .slide-btn:hover span {
+      color: #fff;
+    }
+    /* Sliding Button 2 - Rainbow */
+    .slide-btn-rainbow {
+      background: linear-gradient(90deg, #ffecd2 0%, #fcb69f 100%);
+      color: #6c63ff;
+    }
+    .slide-btn-rainbow .slide-bg {
+      background: linear-gradient(90deg, #6c63ff, #43e97b, #ff6584);
+      opacity: 0.7;
+    }
+    .slide-btn-rainbow:hover span {
+      color: #fff;
+    }
+    /* Sliding Button 3 - Glass */
+    .slide-btn-glass {
+      background: rgba(255,255,255,0.18);
+      color: var(--primary);
+      border: 2px solid rgba(108,99,255,0.18);
+      backdrop-filter: blur(6px);
+    }
+    .slide-btn-glass .slide-bg {
+      background: rgba(108,99,255,0.18);
+    }
+    /* Sliding Button 4 - Neon */
+    .slide-btn-neon {
+      background: #181a1b;
+      color: #43e97b;
+      border: 2px solid #43e97b;
+      text-shadow: 0 0 8px #43e97b;
+    }
+    .slide-btn-neon .slide-bg {
+      background: #43e97b;
+      opacity: 0.2;
+    }
+    /* Sliding Button 5 - 3D */
+    .slide-btn-3d {
+      background: var(--secondary);
+      color: #fff;
+      box-shadow: 0 8px 0 #c13b5a, 0 4px 24px rgba(255,101,132,0.18);
+    }
+    .slide-btn-3d .slide-bg {
+      background: #c13b5a;
+      opacity: 0.3;
+    }
+    .slide-btn-3d:active {
+      transform: translateY(4px);
+      box-shadow: 0 4px 0 #c13b5a, 0 2px 8px rgba(255,101,132,0.12);
+    }
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.45);
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s;
+    }
+    .modal.active {
+      display: flex;
+      animation: fadeIn 0.3s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .modal-content {
+      background: var(--bg);
+      color: var(--text);
+      border-radius: 1.5em;
+      padding: 2em 2em 1.5em 2em;
+      min-width: 320px;
+      max-width: 90vw;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      position: relative;
+      animation: popIn 0.4s cubic-bezier(.4,2,.6,1);
+    }
+    @keyframes popIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .modal-close {
+      position: absolute;
+      top: 1em;
+      right: 1.2em;
+      background: none;
+      border: none;
+      font-size: 1.5em;
+      color: var(--secondary);
+      cursor: pointer;
+      z-index: 2;
+      transition: color var(--transition);
+    }
+    .modal-close:hover {
+      color: var(--primary);
+    }
+    pre {
+      background: #23272f;
+      color: #fff;
+      border-radius: 1em;
+      padding: 1em;
+      overflow-x: auto;
+      font-size: 0.98em;
+      margin-bottom: 1em;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    }
+    .modal-content h3 {
+      margin-top: 0;
+      margin-bottom: 0.7em;
+      font-size: 1.2em;
+      font-weight: 700;
+    }
+    /* Search Form */
+    .search-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1em;
+      margin-top: 2em;
+      background: rgba(0,0,0,0.03);
+      border-radius: 1.5em;
+      padding: 2em 1em;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .search-form input {
+      padding: 0.7em 1.2em;
+      border-radius: 1em;
+      border: 1.5px solid var(--primary);
+      font-size: 1.1em;
+      outline: none;
+      transition: border var(--transition);
+      width: 100%;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .search-form input:focus {
+      border: 1.5px solid var(--secondary);
+    }
+    .search-form button {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 1em;
+      padding: 0.7em 2em;
+      font-size: 1.1em;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: background var(--transition);
+      outline: none;
+    }
+    .search-form button:active {
+      background: var(--secondary);
+    }
+    .search-result {
+      margin-top: 1.5em;
+      text-align: center;
+      font-size: 1.1em;
+      font-weight: 600;
+      color: var(--primary);
+      min-height: 2em;
+    }
+    @media (max-width: 600px) {
+      .container { padding: 1em 0.2em 2em 0.2em; }
+      .modal-content { padding: 1em 0.5em 1em 0.5em; }
+      .button-grid { gap: 1em; }
+    }
+    /* Switch Toggles - Modern Dropdown Style */
+    .switch-modern {
+      position: relative;
+      display: inline-block;
+      width: 70px;
+      height: 36px;
+    }
+    .switch-modern input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .switch-modern .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, #e0e0e0, #bdbdbd);
+      border-radius: 36px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      transition: background 0.4s cubic-bezier(.4,2,.6,1);
+    }
+    .switch-modern .slider:before {
+      position: absolute;
+      content: '';
+      height: 28px; width: 28px;
+      left: 4px; top: 4px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px #bdbdbd44;
+      transition: transform 0.4s cubic-bezier(.4,2,.6,1), background 0.3s;
+    }
+    .switch-modern input:checked + .slider {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+    .switch-modern input:checked + .slider:before {
+      transform: translateX(34px);
+      background: var(--primary);
+    }
+    /* Modern Input Styles */
+    .input-modern {
+      background: rgba(255,255,255,0.7);
+      color: var(--primary);
+      border: 2px solid #e0e0e0;
+      border-radius: 1.5em;
+      padding: 0.9em 1.5em;
+      font-size: 1.1em;
+      outline: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: border 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s;
+      margin-bottom: 0.5em;
+    }
+    .input-modern:focus {
+      border: 2px solid var(--primary);
+      background: #fff;
+      color: #ff6584;
+      box-shadow: 0 0 16px var(--primary);
+    }
+    html[data-theme='dark'] .input-modern {
+      background: #23272f;
+      color: #43e97b;
+      border: 2px solid #444;
+    }
+    html[data-theme='dark'] .input-modern:focus {
+      background: #181a1b;
+      color: #ff6584;
+      border: 2px solid #43e97b;
+      box-shadow: 0 0 16px #43e97b;
+    }
+    /* --- Unique Switch Styles --- */
+    /* Neon Switch */
+    .switch-neon { position: relative; display: inline-block; width: 64px; height: 36px; }
+    .switch-neon input { opacity: 0; width: 0; height: 0; }
+    .switch-neon .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #23272f; border-radius: 36px; box-shadow: 0 0 16px #43e97b; transition: background 0.3s; }
+    .switch-neon .slider:before { position: absolute; content: ''; height: 28px; width: 28px; left: 4px; top: 4px; background: #43e97b; border-radius: 50%; box-shadow: 0 0 16px #43e97b; transition: transform 0.3s, background 0.3s; }
+    .switch-neon input:checked + .slider { background: #43e97b; }
+    .switch-neon input:checked + .slider:before { transform: translateX(28px); background: #23272f; }
+    /* Glass Switch */
+    .switch-glass { position: relative; display: inline-block; width: 64px; height: 36px; }
+    .switch-glass input { opacity: 0; width: 0; height: 0; }
+    .switch-glass .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.18); border-radius: 36px; box-shadow: 0 2px 12px rgba(0,0,0,0.10); backdrop-filter: blur(6px); transition: background 0.3s; }
+    .switch-glass .slider:before { position: absolute; content: ''; height: 28px; width: 28px; left: 4px; top: 4px; background: #6c63ff; border-radius: 50%; box-shadow: 0 2px 8px #6c63ff44; transition: transform 0.3s, background 0.3s; }
+    .switch-glass input:checked + .slider { background: #6c63ff33; }
+    .switch-glass input:checked + .slider:before { transform: translateX(28px); background: #fff; }
+    /* 3D Switch */
+    .switch-3d { position: relative; display: inline-block; width: 64px; height: 36px; }
+    .switch-3d input { opacity: 0; width: 0; height: 0; }
+    .switch-3d .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ff6584; border-radius: 36px; box-shadow: 0 8px 0 #c13b5a, 0 2px 12px rgba(255,101,132,0.10); transition: background 0.3s; }
+    .switch-3d .slider:before { position: absolute; content: ''; height: 28px; width: 28px; left: 4px; top: 4px; background: #fff; border-radius: 50%; box-shadow: 0 4px 0 #c13b5a; transition: transform 0.3s, background 0.3s; }
+    .switch-3d input:checked + .slider { background: #c13b5a; }
+    .switch-3d input:checked + .slider:before { transform: translateX(28px); background: #ff6584; }
+    /* Rainbow Switch */
+    .switch-rainbow { position: relative; display: inline-block; width: 64px; height: 36px; }
+    .switch-rainbow input { opacity: 0; width: 0; height: 0; }
+    .switch-rainbow .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, #ffecd2 0%, #fcb69f 100%); border-radius: 36px; box-shadow: 0 2px 12px rgba(0,0,0,0.10); transition: background 0.3s; }
+    .switch-rainbow .slider:before { position: absolute; content: ''; height: 28px; width: 28px; left: 4px; top: 4px; background: linear-gradient(90deg, #6c63ff, #43e97b, #ff6584); border-radius: 50%; box-shadow: 0 2px 8px #ff658444; transition: transform 0.3s, background 0.3s; }
+    .switch-rainbow input:checked + .slider { background: linear-gradient(90deg, #6c63ff, #43e97b, #ff6584); }
+    .switch-rainbow input:checked + .slider:before { transform: translateX(28px); background: #fff; }
+    /* Morph Switch (SVG icon morph) */
+    .switch-morph { position: relative; display: inline-block; width: 64px; height: 36px; }
+    .switch-morph input { opacity: 0; width: 0; height: 0; }
+    .switch-morph .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #23272f; border-radius: 36px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); transition: background 0.3s; display: flex; align-items: center; justify-content: flex-start; }
+    .switch-morph .icon { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; transition: left 0.3s; }
+    .switch-morph input:checked + .slider { background: #43e97b; }
+    .switch-morph input:checked + .slider .icon { left: 36px; }
+    .switch-morph .slider:before { display: none; }
+    /* --- Unique Input Styles (Redesigned) --- */
+    /* 1. 3D Input */
+    .input-3d-group { perspective: 600px; }
+    .input-3d { background: #fff; color: #222; border: none; border-radius: 1.2em; padding: 1.1em 1.2em; font-size: 1.1em; outline: none; box-shadow: 0 8px 24px #6c63ff44, 0 1.5px 0 #6c63ff; transition: box-shadow 0.3s, transform 0.3s; transform: rotateX(0deg); }
+    .input-3d:focus { box-shadow: 0 16px 32px #6c63ff88, 0 1.5px 0 #43e97b; transform: rotateX(8deg); }
+    html[data-theme='dark'] .input-3d { background: #23272f; color: #43e97b; }
+    /* 2. Water Wave Input */
+    .input-wave-group { position: relative; width: 100%; }
+    .input-wave { width: 100%; padding: 1.1em 1.2em; border: 2px solid #43e97b; border-radius: 1.2em; background: #fff; color: #43e97b; font-size: 1.1em; outline: none; overflow: hidden; position: relative; z-index: 1; }
+    .input-wave:focus { border: 2px solid #6c63ff; }
+    .input-wave-group .wave { position: absolute; left: 0; bottom: 0; width: 100%; height: 8px; background: linear-gradient(90deg, #43e97b 0%, #6c63ff 100%); border-radius: 0 0 1.2em 1.2em; pointer-events: none; animation: wave-move 1.2s infinite linear; opacity: 0.7; }
+    @keyframes wave-move { 0% { background-position-x: 0; } 100% { background-position-x: 200px; } }
+    html[data-theme='dark'] .input-wave { background: #181a1b; color: #43e97b; }
+    /* 3. Particle Input */
+    .input-particle-group { position: relative; width: 100%; }
+    .input-particle { width: 100%; padding: 1.1em 1.2em; border: 2px solid #ff6584; border-radius: 1.2em; background: #fff; color: #ff6584; font-size: 1.1em; outline: none; position: relative; z-index: 1; }
+    .input-particle:focus { border: 2px solid #43e97b; }
+    .input-particle-group .particles { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+    .input-particle-group .particle { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: #ff6584; opacity: 0.7; animation: particle-move 1.2s linear infinite; }
+    @keyframes particle-move { 0% { transform: translateY(0); opacity: 0.7; } 100% { transform: translateY(-60px); opacity: 0; } }
+    html[data-theme='dark'] .input-particle { background: #23272f; color: #ff6584; }
+    /* 4. Glitch Input */
+    .input-glitch-group { position: relative; width: 100%; }
+    .input-glitch { width: 100%; padding: 1.1em 1.2em; border: 2px solid #6c63ff; border-radius: 1.2em; background: #fff; color: #6c63ff; font-size: 1.1em; outline: none; position: relative; z-index: 1; }
+    .input-glitch:focus { border: 2px solid #ff6584; animation: glitch 0.3s linear; }
+    @keyframes glitch { 0% { box-shadow: 0 0 0 #ff6584; } 20% { box-shadow: 2px 0 #ff6584, -2px 0 #43e97b; } 40% { box-shadow: -2px 0 #ff6584, 2px 0 #43e97b; } 60% { box-shadow: 2px 0 #ff6584, -2px 0 #43e97b; } 80% { box-shadow: -2px 0 #ff6584, 2px 0 #43e97b; } 100% { box-shadow: 0 0 0 #ff6584; } }
+    html[data-theme='dark'] .input-glitch { background: #181a1b; color: #6c63ff; }
+    /* 5. Light Glow Input */
+    .input-glow-group { position: relative; width: 100%; }
+    .input-glow { width: 100%; padding: 1.1em 1.2em; border: 2px solid #43e97b; border-radius: 1.2em; background: #fff; color: #43e97b; font-size: 1.1em; outline: none; box-shadow: 0 0 0 #43e97b; transition: box-shadow 0.3s, border 0.3s; }
+    .input-glow:focus { border: 2px solid #ff6584; box-shadow: 0 0 24px #43e97b, 0 0 48px #ff6584; }
+    html[data-theme='dark'] .input-glow { background: #23272f; color: #43e97b; }
+    .music-players-section { margin: 3em 0; }
+    .music-player-demo { margin: 2em auto; max-width: 600px; width: 100%; border-radius: 2em; box-shadow: 0 4px 32px rgba(0,0,0,0.13); overflow: hidden; background: var(--bg); position: relative; display: flex; flex-direction: column; align-items: center; padding: 2em 1.5em 1.5em 1.5em; transition: background 0.3s, box-shadow 0.3s; }
+    .music-player-demo .mp-cover { width: 80px; height: 80px; border-radius: 1em; object-fit: cover; box-shadow: 0 2px 12px rgba(0,0,0,0.13); margin-bottom: 1em; }
+    .music-player-demo .mp-title { font-size: 1.2em; font-weight: 700; margin-bottom: 0.2em; }
+    .music-player-demo .mp-artist { font-size: 1em; opacity: 0.7; margin-bottom: 1em; }
+    .music-player-demo .mp-controls { display: flex; align-items: center; gap: 1.2em; margin-bottom: 1em; }
+    .music-player-demo .mp-btn { background: none; border: none; color: var(--primary); font-size: 1.7em; cursor: pointer; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; transition: background 0.2s, color 0.2s, box-shadow 0.2s; }
+    .music-player-demo .mp-btn:active { background: var(--secondary); color: #fff; }
+    .music-player-demo .mp-progress { width: 100%; height: 6px; background: #eee; border-radius: 3px; margin-bottom: 0.7em; position: relative; overflow: hidden; }
+    .music-player-demo .mp-progress-bar { height: 100%; background: var(--primary); border-radius: 3px; width: 0%; transition: width 0.2s; }
+    .music-player-demo .mp-time { display: flex; justify-content: space-between; font-size: 0.95em; opacity: 0.7; margin-bottom: 0.7em; }
+    .music-player-demo .mp-volume { display: flex; align-items: center; gap: 0.5em; margin-bottom: 0.7em; }
+    .music-player-demo .mp-volume input[type=range] { width: 90px; }
+    .music-player-demo .mp-source-btn { position: absolute; top: 1em; right: 1em; background: var(--secondary); color: #fff; border: none; border-radius: 1em; padding: 0.3em 1.2em; font-size: 0.95em; cursor: pointer; transition: background 0.3s; z-index: 2; }
+    .music-player-demo .mp-source-btn:active { background: var(--primary); }
+    .music-player-demo .mp-credit { font-size: 0.9em; opacity: 0.6; margin-top: 0.7em; text-align: right; }
+    /* Glassmorphism Player */
+    .music-player-glass { background: rgba(255,255,255,0.18); backdrop-filter: blur(10px); border: 2px solid rgba(108,99,255,0.18); box-shadow: 0 8px 32px rgba(108,99,255,0.10); }
+    .music-player-glass .mp-btn { color: #6c63ff; background: rgba(255,255,255,0.18); box-shadow: 0 2px 8px #6c63ff22; }
+    .music-player-glass .mp-btn:active { background: #6c63ff; color: #fff; }
+    .music-player-glass .mp-progress { background: #e0e0e0; }
+    .music-player-glass .mp-progress-bar { background: linear-gradient(90deg, #6c63ff, #43e97b); }
+    .music-player-glass .mp-volume input[type=range]::-webkit-slider-thumb { background: #6c63ff; }
+    /* Neon Player */
+    .music-player-neon { background: #181a1b; box-shadow: 0 0 32px #43e97b44, 0 8px 32px #181a1b; border: 2px solid #43e97b; }
+    .music-player-neon .mp-btn { color: #43e97b; text-shadow: 0 0 8px #43e97b; box-shadow: 0 0 8px #43e97b44; }
+    .music-player-neon .mp-btn:active { background: #43e97b; color: #181a1b; }
+    .music-player-neon .mp-progress { background: #23272f; }
+    .music-player-neon .mp-progress-bar { background: #43e97b; box-shadow: 0 0 8px #43e97b; }
+    .music-player-neon .mp-volume input[type=range]::-webkit-slider-thumb { background: #43e97b; }
+    /* Waveform Player */
+    .music-player-wave { background: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%); box-shadow: 0 8px 32px #fcb69f44; border: 2px solid #ff6584; }
+    .music-player-wave .mp-btn { color: #ff6584; background: #fff; box-shadow: 0 2px 8px #ff658444; }
+    .music-player-wave .mp-btn:active { background: #ff6584; color: #fff; }
+    .music-player-wave .mp-progress { background: #fff; }
+    .music-player-wave .mp-progress-bar { background: linear-gradient(90deg, #ff6584, #43e97b); }
+    .music-player-wave .mp-volume input[type=range]::-webkit-slider-thumb { background: #ff6584; }
+    .music-player-wave .mp-waveform { width: 100%; height: 32px; margin-bottom: 1em; display: flex; align-items: flex-end; gap: 2px; }
+    .music-player-wave .mp-bar { width: 4px; background: #ff6584; border-radius: 2px; animation: waveAnim 1.2s infinite linear alternate; }
+    @keyframes waveAnim { 0% { height: 10px; } 100% { height: 32px; } }
+    .music-player-wave .mp-bar:nth-child(2) { animation-delay: 0.1s; }
+    .music-player-wave .mp-bar:nth-child(3) { animation-delay: 0.2s; }
+    .music-player-wave .mp-bar:nth-child(4) { animation-delay: 0.3s; }
+    .music-player-wave .mp-bar:nth-child(5) { animation-delay: 0.4s; }
+    .music-player-wave .mp-bar:nth-child(6) { animation-delay: 0.5s; }
+    .music-player-wave .mp-bar:nth-child(7) { animation-delay: 0.6s; }
+    .music-player-wave .mp-bar:nth-child(8) { animation-delay: 0.7s; }
+    .music-player-wave .mp-bar:nth-child(9) { animation-delay: 0.8s; }
+    .music-player-wave .mp-bar:nth-child(10) { animation-delay: 0.9s; }
+    /* 3D Card Player */
+    .music-player-3d { background: #fff; box-shadow: 0 16px 48px #6c63ff33, 0 2px 8px #43e97b22; border: 2px solid #6c63ff; transform-style: preserve-3d; perspective: 600px; }
+    .music-player-3d .mp-btn { color: #fff; background: linear-gradient(135deg, #6c63ff, #43e97b); box-shadow: 0 4px 16px #6c63ff44; transform: translateZ(10px); }
+    .music-player-3d .mp-btn:active { background: #43e97b; color: #fff; }
+    .music-player-3d .mp-progress { background: #e0e0e0; }
+    .music-player-3d .mp-progress-bar { background: #6c63ff; }
+    .music-player-3d .mp-cover { box-shadow: 0 8px 32px #6c63ff33; }
+    .music-player-3d .mp-title { text-shadow: 0 2px 8px #6c63ff44; }
+    .music-player-3d .mp-volume input[type=range]::-webkit-slider-thumb { background: #6c63ff; }
+    /* Minimal Modern Player */
+    .music-player-minimal { background: #f5f6fa; border: 2px solid #e0e0e0; box-shadow: 0 2px 8px #e0e0e0; }
+    .music-player-minimal .mp-btn { color: #23272f; background: #fff; box-shadow: 0 2px 8px #e0e0e0; }
+    .music-player-minimal .mp-btn:active { background: #23272f; color: #fff; }
+    .music-player-minimal .mp-progress { background: #e0e0e0; }
+    .music-player-minimal .mp-progress-bar { background: #23272f; }
+    .music-player-minimal .mp-volume input[type=range]::-webkit-slider-thumb { background: #23272f; }
+    @media (max-width: 700px) { .music-player-demo { max-width: 98vw; padding: 1.2em 0.5em; } }
+
+    /* --- Music Players Advanced Styles --- */
+    .music-players-section { margin: 3em 0; }
+    .music-player-demo { margin: 2em auto; max-width: 600px; width: 100%; border-radius: 2em; box-shadow: 0 4px 32px rgba(0,0,0,0.13); overflow: hidden; background: var(--bg); position: relative; display: flex; flex-direction: column; align-items: center; padding: 2em 1.5em 1.5em 1.5em; transition: background 0.3s, box-shadow 0.3s; }
+    .music-player-demo .mp-cover { width: 90px; height: 90px; border-radius: 1.2em; object-fit: cover; box-shadow: 0 2px 16px rgba(0,0,0,0.18); margin-bottom: 1em; transition: box-shadow 0.3s; }
+    .music-player-demo .mp-title { font-size: 1.25em; font-weight: 700; margin-bottom: 0.2em; letter-spacing: 0.5px; }
+    .music-player-demo .mp-artist { font-size: 1em; opacity: 0.7; margin-bottom: 1em; }
+    .music-player-demo .mp-controls { display: flex; align-items: center; gap: 1.2em; margin-bottom: 1em; }
+    .music-player-demo .mp-btn { background: none; border: none; color: var(--primary); font-size: 1.7em; cursor: pointer; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.10); }
+    .music-player-demo .mp-btn:active { background: var(--secondary); color: #fff; transform: scale(0.93); }
+    .music-player-demo .mp-progress { width: 100%; height: 7px; background: #eee; border-radius: 3.5px; margin-bottom: 0.7em; position: relative; overflow: hidden; }
+    .music-player-demo .mp-progress-bar { height: 100%; background: var(--primary); border-radius: 3.5px; width: 0%; transition: width 0.2s; }
+    .music-player-demo .mp-time { display: flex; justify-content: space-between; font-size: 0.97em; opacity: 0.7; margin-bottom: 0.7em; }
+    .music-player-demo .mp-volume { display: flex; align-items: center; gap: 0.5em; margin-bottom: 0.7em; }
+    .music-player-demo .mp-volume input[type=range] { width: 90px; accent-color: var(--primary); }
+    .music-player-demo .mp-source-btn { position: absolute; top: 1em; right: 1em; background: var(--secondary); color: #fff; border: none; border-radius: 1em; padding: 0.3em 1.2em; font-size: 0.95em; cursor: pointer; transition: background 0.3s; z-index: 2; }
+    .music-player-demo .mp-source-btn:active { background: var(--primary); }
+    .music-player-demo .mp-credit { font-size: 0.9em; opacity: 0.6; margin-top: 0.7em; text-align: right; }
+    @media (max-width: 700px) { .music-player-demo { max-width: 98vw; padding: 1.2em 0.5em; } }
+
+    /* 1. Glassmorphism + Glow */
+    .music-player-glass {
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(14px);
+      border: 2.5px solid rgba(108,99,255,0.18);
+      box-shadow: 0 8px 32px 0 #6c63ff22, 0 2px 8px #43e97b22;
+      position: relative;
+    }
+    .music-player-glass .mp-cover {
+      box-shadow: 0 0 0 6px #43e97b55, 0 2px 16px #6c63ff33;
+      animation: glass-glow 2.5s infinite alternate;
+    }
+    @keyframes glass-glow {
+      0% { box-shadow: 0 0 0 6px #43e97b55, 0 2px 16px #6c63ff33; }
+      100% { box-shadow: 0 0 0 16px #6c63ff33, 0 2px 32px #43e97b55; }
+    }
+    .music-player-glass .mp-btn {
+      background: rgba(255,255,255,0.18);
+      color: #6c63ff;
+      box-shadow: 0 0 8px #43e97b44;
+    }
+    .music-player-glass .mp-btn:active {
+      background: #6c63ff;
+      color: #fff;
+    }
+    .music-player-glass .mp-progress-bar {
+      background: linear-gradient(90deg, #6c63ff, #43e97b);
+      box-shadow: 0 0 8px #43e97b44;
+    }
+    .music-player-glass .mp-volume input[type=range]::-webkit-slider-thumb { background: #6c63ff; }
+    html[data-theme='dark'] .music-player-glass {
+      background: rgba(24,26,27,0.7);
+      border: 2.5px solid #23272f;
+      box-shadow: 0 8px 32px 0 #43e97b33, 0 2px 8px #6c63ff22;
+    }
+
+    /* 2. Neon Night */
+    .music-player-neon {
+      background: #181a1b;
+      box-shadow: 0 0 32px #43e97b44, 0 8px 32px #181a1b;
+      border: 2.5px solid #43e97b;
+      position: relative;
+      overflow: visible;
+    }
+    .music-player-neon:before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 2.2em;
+      box-shadow: 0 0 32px 8px #43e97b88, 0 0 0 2px #43e97b;
+      pointer-events: none;
+      z-index: 0;
+      animation: neon-glow 2.2s infinite alternate;
+    }
+    @keyframes neon-glow {
+      0% { box-shadow: 0 0 32px 8px #43e97b88, 0 0 0 2px #43e97b; }
+      100% { box-shadow: 0 0 64px 16px #6c63ff88, 0 0 0 2px #43e97b; }
+    }
+    .music-player-neon .mp-btn {
+      color: #43e97b;
+      text-shadow: 0 0 8px #43e97b, 0 0 16px #43e97b;
+      box-shadow: 0 0 8px #43e97b44;
+      background: #23272f;
+      border: 1.5px solid #43e97b;
+      animation: neon-btn 1.5s infinite alternate;
+    }
+    @keyframes neon-btn {
+      0% { box-shadow: 0 0 8px #43e97b44; }
+      100% { box-shadow: 0 0 24px #43e97b88; }
+    }
+    .music-player-neon .mp-btn:active {
+      background: #43e97b;
+      color: #181a1b;
+    }
+    .music-player-neon .mp-progress-bar {
+      background: linear-gradient(90deg, #43e97b, #6c63ff);
+      box-shadow: 0 0 8px #43e97b;
+    }
+    .music-player-neon .mp-volume input[type=range]::-webkit-slider-thumb { background: #43e97b; }
+    html[data-theme='light'] .music-player-neon {
+      background: #fff;
+      border: 2.5px solid #6c63ff;
+      box-shadow: 0 0 32px #6c63ff44, 0 8px 32px #fff;
+    }
+
+    /* 3. Waveform Canvas */
+    .music-player-wave {
+      background: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%);
+      box-shadow: 0 8px 32px #fcb69f44;
+      border: 2.5px solid #ff6584;
+      position: relative;
+    }
+    .music-player-wave .mp-btn {
+      color: #ff6584;
+      background: #fff;
+      box-shadow: 0 2px 8px #ff658444;
+    }
+    .music-player-wave .mp-btn:active {
+      background: #ff6584;
+      color: #fff;
+    }
+    .music-player-wave .mp-progress-bar {
+      background: linear-gradient(90deg, #ff6584, #43e97b);
+    }
+    .music-player-wave .mp-volume input[type=range]::-webkit-slider-thumb { background: #ff6584; }
+    .music-player-wave .mp-waveform-canvas {
+      width: 100%;
+      height: 38px;
+      margin-bottom: 1em;
+      display: block;
+      background: transparent;
+    }
+    html[data-theme='dark'] .music-player-wave {
+      background: linear-gradient(120deg, #23272f 0%, #181a1b 100%);
+      border: 2.5px solid #43e97b;
+      box-shadow: 0 8px 32px #43e97b44;
+    }
+
+    /* 4. 3D Card Flip */
+    .music-player-3d {
+      background: #fff;
+      box-shadow: 0 16px 48px #6c63ff33, 0 2px 8px #43e97b22;
+      border: 2.5px solid #6c63ff;
+      perspective: 900px;
+      position: relative;
+      overflow: visible;
+    }
+    .music-player-3d .mp-cover {
+      transition: transform 0.7s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
+      will-change: transform;
+    }
+    .music-player-3d:hover .mp-cover {
+      transform: rotateY(180deg) scale(1.1);
+      box-shadow: 0 0 32px #43e97b88;
+    }
+    .music-player-3d .mp-btn {
+      color: #fff;
+      background: linear-gradient(135deg, #6c63ff, #43e97b);
+      box-shadow: 0 4px 16px #6c63ff44;
+      transform: translateZ(10px);
+    }
+    .music-player-3d .mp-btn:active {
+      background: #43e97b;
+      color: #fff;
+    }
+    .music-player-3d .mp-progress-bar {
+      background: #6c63ff;
+    }
+    .music-player-3d .mp-title {
+      text-shadow: 0 2px 8px #6c63ff44;
+    }
+    .music-player-3d .mp-volume input[type=range]::-webkit-slider-thumb { background: #6c63ff; }
+    html[data-theme='dark'] .music-player-3d {
+      background: #23272f;
+      border: 2.5px solid #43e97b;
+      box-shadow: 0 16px 48px #43e97b33, 0 2px 8px #6c63ff22;
+    }
+
+    /* 5. Minimal Modern + Animated Gradient */
+    .music-player-minimal {
+      background: linear-gradient(90deg, #f5f6fa 0%, #e0e0e0 100%);
+      border: 2.5px solid #e0e0e0;
+      box-shadow: 0 2px 8px #e0e0e0;
+      position: relative;
+      overflow: hidden;
+    }
+    .music-player-minimal:before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(270deg, #6c63ff, #43e97b, #ff6584, #fcb69f, #6c63ff);
+      background-size: 400% 400%;
+      opacity: 0.18;
+      z-index: 0;
+      animation: minimal-gradient 8s ease-in-out infinite;
+    }
+    @keyframes minimal-gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .music-player-minimal .mp-btn {
+      color: #23272f;
+      background: #fff;
+      box-shadow: 0 2px 8px #e0e0e0;
+    }
+    .music-player-minimal .mp-btn:active {
+      background: #23272f;
+      color: #fff;
+    }
+    .music-player-minimal .mp-progress-bar {
+      background: #23272f;
+    }
+    .music-player-minimal .mp-volume input[type=range]::-webkit-slider-thumb { background: #23272f; }
+    html[data-theme='dark'] .music-player-minimal {
+      background: linear-gradient(90deg, #23272f 0%, #181a1b 100%);
+      border: 2.5px solid #444;
+      box-shadow: 0 2px 8px #23272f;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <span class="title">Awesome Button Gallery</span>
+        <div class="author">by abbas davarpanah</div>
+      </div>
+      <button class="theme-toggle" id="themeToggle">Toggle Theme</button>
+    </header>
+    <section>
+      <h2>Fancy Click Buttons</h2>
+      <div class="button-grid" id="clickButtons">
+        <!-- Buttons will be injected here -->
+      </div>
+    </section>
+    <section>
+      <h2>Animated Sliding Buttons</h2>
+      <div class="button-grid" id="slideButtons">
+        <!-- Buttons will be injected here -->
+      </div>
+    </section>
+    <section>
+      <h2>Awesome Switch Toggles</h2>
+      <div class="button-grid" id="switchButtons">
+        <!-- Switches will be injected here -->
+      </div>
+    </section>
+    <section>
+      <h2>Fancy Input Forms</h2>
+      <div class="button-grid" id="inputForms">
+        <!-- Inputs will be injected here -->
+      </div>
+    </section>
+    <section class="music-players-section">
+      <h2>Awesome Music Players</h2>
+      <div id="musicPlayers"></div>
+    </section>
+    <form class="search-form" id="searchForm" autocomplete="off">
+      <label for="searchInput"><b>Find a Button by Name or Serial</b></label>
+      <input type="text" id="searchInput" placeholder="Enter button name or serial..." required />
+      <button type="submit">Search</button>
+      <div class="search-result" id="searchResult"></div>
+    </form>
+  </div>
+  <div class="modal" id="codeModal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal">&times;</button>
+      <h3 id="modalTitle"></h3>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+  <script>
+    // abbas davarpanah - All code in this file
+    const BUTTONS = [
+      {
+        serial: 'BTN-001',
+        name: 'Capsule Button',
+        type: 'click',
+        html: `<button class=\"btn-capsule\">Capsule</button>` ,
+        css: `/* Capsule Button by abbas davarpanah */\n.btn-capsule {\n  background: linear-gradient(90deg, #6c63ff, #43e97b);\n  color: #fff;\n  border: none;\n  border-radius: 999px;\n  padding: 0.9em 2.5em;\n  font-size: 1.2em;\n  font-weight: 700;\n  box-shadow: 0 4px 24px rgba(108,99,255,0.18);\n  cursor: pointer;\n  transition: transform 0.18s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;\n  outline: none;\n  position: relative;\n  overflow: hidden;\n}\n.btn-capsule:active {\n  transform: scale(0.97);\n  box-shadow: 0 2px 8px rgba(108,99,255,0.12);\n}`,
+        js: `// No JS needed for Capsule Button by abbas davarpanah`
+      },
+      {
+        serial: 'BTN-002',
+        name: '3D Button',
+        type: 'click',
+        html: `<button class=\"btn-3d\">3D</button>` ,
+        css: `/* 3D Button by abbas davarpanah */\n.btn-3d {\n  background: #ff6584;\n  color: #fff;\n  border: none;\n  border-radius: 1.5em;\n  padding: 1em 2.2em;\n  font-size: 1.2em;\n  font-weight: 700;\n  box-shadow: 0 8px 0 #c13b5a, 0 4px 24px rgba(255,101,132,0.18);\n  cursor: pointer;\n  transition: transform 0.15s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;\n  outline: none;\n  position: relative;\n}\n.btn-3d:active {\n  transform: translateY(4px);\n  box-shadow: 0 4px 0 #c13b5a, 0 2px 8px rgba(255,101,132,0.12);\n}`,
+        js: `// No JS needed for 3D Button by abbas davarpanah`
+      },
+      {
+        serial: 'BTN-003',
+        name: 'Fantasy Button',
+        type: 'click',
+        html: `<button class=\"btn-fantasy\"><span>Fantasy</span></button>` ,
+        css: `/* Fantasy Button by abbas davarpanah */\n.btn-fantasy {\n  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);\n  color: #6c63ff;\n  border: 2px solid #6c63ff;\n  border-radius: 2em;\n  padding: 0.9em 2.2em;\n  font-size: 1.2em;\n  font-weight: 700;\n  box-shadow: 0 4px 24px rgba(252,182,159,0.18);\n  cursor: pointer;\n  transition: background 0.3s, color 0.3s, border 0.3s, box-shadow 0.3s;\n  outline: none;\n  position: relative;\n  overflow: hidden;\n}\n.btn-fantasy:before {\n  content: '';\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  width: 0;\n  height: 0;\n  background: rgba(108,99,255,0.12);\n  border-radius: 50%;\n  transform: translate(-50%, -50%);\n  transition: width 0.4s cubic-bezier(.4,2,.6,1), height 0.4s cubic-bezier(.4,2,.6,1);\n  z-index: 0;\n}\n.btn-fantasy:active:before {\n  width: 220%;\n  height: 220%;\n}\n.btn-fantasy span {\n  position: relative;\n  z-index: 1;\n}`,
+        js: `// No JS needed for Fantasy Button by abbas davarpanah`
+      },
+      {
+        serial: 'BTN-004',
+        name: 'Glassmorphism Button',
+        type: 'click',
+        html: `<button class=\"btn-glass\">Glassmorphism</button>` ,
+        css: `/* Glassmorphism Button by abbas davarpanah */\n.btn-glass {\n  background: rgba(255,255,255,0.18);\n  color: #6c63ff;\n  border: 2px solid rgba(108,99,255,0.18);\n  border-radius: 2em;\n  padding: 0.9em 2.2em;\n  font-size: 1.2em;\n  font-weight: 700;\n  box-shadow: 0 4px 24px rgba(108,99,255,0.10);\n  backdrop-filter: blur(6px);\n  cursor: pointer;\n  transition: background 0.3s, color 0.3s, border 0.3s, box-shadow 0.3s;\n  outline: none;\n  position: relative;\n  overflow: hidden;\n}\n.btn-glass:active {\n  background: rgba(108,99,255,0.12);\n  color: #fff;\n  border: 2px solid #6c63ff;\n}`,
+        js: `// No JS needed for Glassmorphism Button by abbas davarpanah`
+      },
+      {
+        serial: 'BTN-005',
+        name: 'Neon Button',
+        type: 'click',
+        html: `<button class=\"btn-neon\">Neon</button>` ,
+        css: `/* Neon Button by abbas davarpanah */\n.btn-neon {\n  background: #181a1b;\n  color: #43e97b;\n  border: 2px solid #43e97b;\n  border-radius: 2em;\n  padding: 0.9em 2.2em;\n  font-size: 1.2em;\n  font-weight: 700;\n  box-shadow: 0 0 16px #43e97b, 0 4px 24px rgba(67,233,123,0.10);\n  cursor: pointer;\n  transition: background 0.3s, color 0.3s, border 0.3s, box-shadow 0.3s;\n  outline: none;\n  position: relative;\n  overflow: hidden;\n  text-shadow: 0 0 8px #43e97b;\n}\n.btn-neon:active {\n  background: #43e97b;\n  color: #181a1b;\n  border: 2px solid #181a1b;\n  box-shadow: 0 0 32px #43e97b;\n}`,
+        js: `// No JS needed for Neon Button by abbas davarpanah`
+      },
+      // Sliding Buttons
+      {
+        serial: 'SLD-001',
+        name: 'Sliding Button',
+        type: 'slide',
+        html: `<button class=\"slide-btn\"><span>Slide</span><div class=\"slide-bg\"></div></button>` ,
+        css: `/* Sliding Button by abbas davarpanah */\n.slide-btn {\n  position: relative;\n  display: inline-block;\n  min-width: 180px;\n  min-height: 48px;\n  border: none;\n  border-radius: 2em;\n  font-size: 1.1em;\n  font-weight: 700;\n  overflow: hidden;\n  cursor: pointer;\n  background: #6c63ff;\n  color: #fff;\n  box-shadow: 0 4px 24px rgba(0,0,0,0.12);\n  transition: background 0.3s, color 0.3s, box-shadow 0.3s;\n  outline: none;\n}\n.slide-btn .slide-bg {\n  position: absolute;\n  left: -100%;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  background: #ff6584;\n  z-index: 0;\n  transition: left 0.4s cubic-bezier(.4,2,.6,1);\n}\n.slide-btn:hover .slide-bg {\n  left: 0;\n}\n.slide-btn span {\n  position: relative;\n  z-index: 1;\n  transition: color 0.3s;\n}\n.slide-btn:hover span {\n  color: #fff;\n}`,
+        js: `// No JS needed for Sliding Button by abbas davarpanah`
+      },
+      {
+        serial: 'SLD-002',
+        name: 'Rainbow Slide',
+        type: 'slide',
+        html: `<button class=\"slide-btn slide-btn-rainbow\"><span>Rainbow</span><div class=\"slide-bg\"></div></button>` ,
+        css: `/* Rainbow Sliding Button by abbas davarpanah */\n.slide-btn-rainbow {\n  background: linear-gradient(90deg, #ffecd2 0%, #fcb69f 100%);\n  color: #6c63ff;\n}\n.slide-btn-rainbow .slide-bg {\n  background: linear-gradient(90deg, #6c63ff, #43e97b, #ff6584);\n  opacity: 0.7;\n}\n.slide-btn-rainbow:hover span {\n  color: #fff;\n}`,
+        js: `// No JS needed for Rainbow Sliding Button by abbas davarpanah`
+      },
+      {
+        serial: 'SLD-003',
+        name: 'Glass Slide',
+        type: 'slide',
+        html: `<button class=\"slide-btn slide-btn-glass\"><span>Glass</span><div class=\"slide-bg\"></div></button>` ,
+        css: `/* Glass Sliding Button by abbas davarpanah */\n.slide-btn-glass {\n  background: rgba(255,255,255,0.18);\n  color: #6c63ff;\n  border: 2px solid rgba(108,99,255,0.18);\n  backdrop-filter: blur(6px);\n}\n.slide-btn-glass .slide-bg {\n  background: rgba(108,99,255,0.18);\n}`,
+        js: `// No JS needed for Glass Sliding Button by abbas davarpanah`
+      },
+      {
+        serial: 'SLD-004',
+        name: 'Neon Slide',
+        type: 'slide',
+        html: `<button class=\"slide-btn slide-btn-neon\"><span>Neon</span><div class=\"slide-bg\"></div></button>` ,
+        css: `/* Neon Sliding Button by abbas davarpanah */\n.slide-btn-neon {\n  background: #181a1b;\n  color: #43e97b;\n  border: 2px solid #43e97b;\n  text-shadow: 0 0 8px #43e97b;\n}\n.slide-btn-neon .slide-bg {\n  background: #43e97b;\n  opacity: 0.2;\n}`,
+        js: `// No JS needed for Neon Sliding Button by abbas davarpanah`
+      },
+      {
+        serial: 'SLD-005',
+        name: '3D Slide',
+        type: 'slide',
+        html: `<button class=\"slide-btn slide-btn-3d\"><span>3D Slide</span><div class=\"slide-bg\"></div></button>` ,
+        css: `/* 3D Sliding Button by abbas davarpanah */\n.slide-btn-3d {\n  background: #ff6584;\n  color: #fff;\n  box-shadow: 0 8px 0 #c13b5a, 0 4px 24px rgba(255,101,132,0.18);\n}\n.slide-btn-3d .slide-bg {\n  background: #c13b5a;\n  opacity: 0.3;\n}\n.slide-btn-3d:active {\n  transform: translateY(4px);\n  box-shadow: 0 4px 0 #c13b5a, 0 2px 8px rgba(255,101,132,0.12);\n}`,
+        js: `// No JS needed for 3D Sliding Button by abbas davarpanah`
+      },
+      // Switch Toggles (All Unique)
+      {
+        serial: 'SWC-001',
+        name: 'Neon Switch',
+        type: 'switch',
+        html: `<label class=\"switch-neon\"><input type=\"checkbox\"><span class=\"slider\"></span></label>` ,
+        css: `/* Neon Switch by abbas davarpanah */\n.switch-neon { position: relative; display: inline-block; width: 64px; height: 36px; }\n.switch-neon input { opacity: 0; width: 0; height: 0; }\n.switch-neon .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #23272f; border-radius: 36px; box-shadow: 0 0 16px #43e97b; transition: background 0.3s; }\n.switch-neon .slider:before { position: absolute; content: ''; height: 28px; width: 28px; left: 4px; top: 4px; background: #43e97b; border-radius: 50%; box-shadow: 0 0 16px #43e97b; transition: transform 0.3s, background 0.3s; }\n.switch-neon input:checked + .slider { background: #43e97b; }\n.switch-neon input:checked + .slider:before { transform: translateX(28px); background: #23272f; }`,
+        js: `// No JS needed for Neon Switch by abbas davarpanah`
+      },
+      {
+        serial: 'SWC-002',
+        name: 'Glass Switch',
+        type: 'switch',
+        html: `<label class=\"switch-glass\"><input type=\"checkbox\"><span class=\"slider\"></span></label>` ,
+        css: `/* Glass Switch by abbas davarpanah */\n.switch-glass { position: relative; display: inline-block; width: 64px; height: 36px; }\n.switch-glass input { opacity: 0; width: 0; height: 0; }\n.switch-glass .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.18); border-radius: 36px; box-shadow: 0 2px 12px rgba(0,0,0,0.10); backdrop-filter: blur(6px); transition: background 0.3s; }\n.switch-glass .slider:before { position: absolute; content: ''; height: 28px; width: 28px; left: 4px; top: 4px; background: #6c63ff; border-radius: 50%; box-shadow: 0 2px 8px #6c63ff44; transition: transform 0.3s, background 0.3s; }\n.switch-glass input:checked + .slider { background: #6c63ff33; }\n.switch-glass input:checked + .slider:before { transform: translateX(28px); background: #fff; }`,
+        js: `// No JS needed for Glass Switch by abbas davarpanah`
+      },
+      {
+        serial: 'SWC-003',
+        name: '3D Switch',
+        type: 'switch',
+        html: `<label class=\"switch-3d\"><input type=\"checkbox\"><span class=\"slider\"></span></label>` ,
+        css: `/* 3D Switch by abbas davarpanah */\n.switch-3d { position: relative; display: inline-block; width: 64px; height: 36px; }\n.switch-3d input { opacity: 0; width: 0; height: 0; }\n.switch-3d .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ff6584; border-radius: 36px; box-shadow: 0 8px 0 #c13b5a, 0 2px 12px rgba(255,101,132,0.10); transition: background 0.3s; }\n.switch-3d .slider:before { position: absolute; content: ''; height: 28px; width: 28px; left: 4px; top: 4px; background: #fff; border-radius: 50%; box-shadow: 0 4px 0 #c13b5a; transition: transform 0.3s, background 0.3s; }\n.switch-3d input:checked + .slider { background: #c13b5a; }\n.switch-3d input:checked + .slider:before { transform: translateX(28px); background: #ff6584; }`,
+        js: `// No JS needed for 3D Switch by abbas davarpanah`
+      },
+      {
+        serial: 'SWC-004',
+        name: 'Rainbow Switch',
+        type: 'switch',
+        html: `<label class=\"switch-rainbow\"><input type=\"checkbox\"><span class=\"slider\"></span></label>` ,
+        css: `/* Rainbow Switch by abbas davarpanah */\n.switch-rainbow { position: relative; display: inline-block; width: 64px; height: 36px; }\n.switch-rainbow input { opacity: 0; width: 0; height: 0; }\n.switch-rainbow .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, #ffecd2 0%, #fcb69f 100%); border-radius: 36px; box-shadow: 0 2px 12px rgba(0,0,0,0.10); transition: background 0.3s; }\n.switch-rainbow .slider:before { position: absolute; content: ''; height: 28px; width: 28px; left: 4px; top: 4px; background: linear-gradient(90deg, #6c63ff, #43e97b, #ff6584); border-radius: 50%; box-shadow: 0 2px 8px #ff658444; transition: transform 0.3s, background 0.3s; }\n.switch-rainbow input:checked + .slider { background: linear-gradient(90deg, #6c63ff, #43e97b, #ff6584); }\n.switch-rainbow input:checked + .slider:before { transform: translateX(28px); background: #fff; }`,
+        js: `// No JS needed for Rainbow Switch by abbas davarpanah`
+      },
+      {
+        serial: 'SWC-005',
+        name: 'Morph Switch',
+        type: 'switch',
+        html: `<label class=\"switch-morph\"><input type=\"checkbox\"><span class=\"slider\"><svg class=\"icon\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"8\" fill=\"#ff6584\"/></svg></span></label>` ,
+        css: `/* Morph Switch by abbas davarpanah */\n.switch-morph { position: relative; display: inline-block; width: 64px; height: 36px; }\n.switch-morph input { opacity: 0; width: 0; height: 0; }\n.switch-morph .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #23272f; border-radius: 36px; box-shadow: 0 2px 8px rgba(0,0,0,0.10); transition: background 0.3s; display: flex; align-items: center; justify-content: flex-start; }\n.switch-morph .icon { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; transition: left 0.3s; }\n.switch-morph input:checked + .slider { background: #43e97b; }\n.switch-morph input:checked + .slider .icon { left: 36px; }\n.switch-morph .slider:before { display: none; }`,
+        js: `// Morph Switch by abbas davarpanah\n// (SVG icon morphs position with toggle)`
+      },
+      // Fancy Inputs (All Unique)
+      {
+        serial: 'INP-001',
+        name: '3D Input',
+        type: 'input',
+        html: `<span class=\"input-3d-group\"><input class=\"input-3d\" placeholder=\"3D Input\"></span>` ,
+        css: `/* 3D Input by abbas davarpanah */\n.input-3d-group { perspective: 600px; }\n.input-3d { background: #fff; color: #222; border: none; border-radius: 1.2em; padding: 1.1em 1.2em; font-size: 1.1em; outline: none; box-shadow: 0 8px 24px #6c63ff44, 0 1.5px 0 #6c63ff; transition: box-shadow 0.3s, transform 0.3s; transform: rotateX(0deg); }\n.input-3d:focus { box-shadow: 0 16px 32px #6c63ff88, 0 1.5px 0 #43e97b; transform: rotateX(8deg); }\nhtml[data-theme='dark'] .input-3d { background: #23272f; color: #43e97b; }`,
+        js: `// No JS needed for 3D Input by abbas davarpanah`
+      },
+      {
+        serial: 'INP-002',
+        name: 'Water Wave Input',
+        type: 'input',
+        html: `<span class=\"input-wave-group\"><input class=\"input-wave\" placeholder=\"Water Wave\"><span class=\"wave\"></span></span>` ,
+        css: `/* Water Wave Input by abbas davarpanah */\n.input-wave-group { position: relative; width: 100%; }\n.input-wave { width: 100%; padding: 1.1em 1.2em; border: 2px solid #43e97b; border-radius: 1.2em; background: #fff; color: #43e97b; font-size: 1.1em; outline: none; overflow: hidden; position: relative; z-index: 1; }\n.input-wave:focus { border: 2px solid #6c63ff; }\n.input-wave-group .wave { position: absolute; left: 0; bottom: 0; width: 100%; height: 8px; background: linear-gradient(90deg, #43e97b 0%, #6c63ff 100%); border-radius: 0 0 1.2em 1.2em; pointer-events: none; animation: wave-move 1.2s infinite linear; opacity: 0.7; }\n@keyframes wave-move { 0% { background-position-x: 0; } 100% { background-position-x: 200px; } }\nhtml[data-theme='dark'] .input-wave { background: #181a1b; color: #43e97b; }`,
+        js: `// No JS needed for Water Wave Input by abbas davarpanah`
+      },
+      {
+        serial: 'INP-003',
+        name: 'Particle Input',
+        type: 'input',
+        html: `<span class=\"input-particle-group\"><input class=\"input-particle\" placeholder=\"Particle Input\"><span class=\"particles\"></span></span>` ,
+        css: `/* Particle Input by abbas davarpanah */\n.input-particle-group { position: relative; width: 100%; }\n.input-particle { width: 100%; padding: 1.1em 1.2em; border: 2px solid #ff6584; border-radius: 1.2em; background: #fff; color: #ff6584; font-size: 1.1em; outline: none; position: relative; z-index: 1; }\n.input-particle:focus { border: 2px solid #43e97b; }\n.input-particle-group .particles { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }\n.input-particle-group .particle { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: #ff6584; opacity: 0.7; animation: particle-move 1.2s linear infinite; }\n@keyframes particle-move { 0% { transform: translateY(0); opacity: 0.7; } 100% { transform: translateY(-60px); opacity: 0; } }\nhtml[data-theme='dark'] .input-particle { background: #23272f; color: #ff6584; }`,
+        js: `// Particle Input by abbas davarpanah\n(function(){\n  document.querySelectorAll('.input-particle-group').forEach(group => {\n    const particles = group.querySelector('.particles');\n    for(let i=0;i<10;i++){\n      const p = document.createElement('span');\n      p.className = 'particle';\n      p.style.left = (Math.random()*90+5)+'%';\n      p.style.top = (Math.random()*60+10)+'%';\n      p.style.animationDelay = (Math.random()*1)+'s';\n      particles.appendChild(p);\n    }\n  });\n})();`
+      },
+      {
+        serial: 'INP-004',
+        name: 'Glitch Input',
+        type: 'input',
+        html: `<span class=\"input-glitch-group\"><input class=\"input-glitch\" placeholder=\"Glitch Input\"></span>` ,
+        css: `/* Glitch Input by abbas davarpanah */\n.input-glitch-group { position: relative; width: 100%; }\n.input-glitch { width: 100%; padding: 1.1em 1.2em; border: 2px solid #6c63ff; border-radius: 1.2em; background: #fff; color: #6c63ff; font-size: 1.1em; outline: none; position: relative; z-index: 1; }\n.input-glitch:focus { border: 2px solid #ff6584; animation: glitch 0.3s linear; }\n@keyframes glitch { 0% { box-shadow: 0 0 0 #ff6584; } 20% { box-shadow: 2px 0 #ff6584, -2px 0 #43e97b; } 40% { box-shadow: -2px 0 #ff6584, 2px 0 #43e97b; } 60% { box-shadow: 2px 0 #ff6584, -2px 0 #43e97b; } 80% { box-shadow: -2px 0 #ff6584, 2px 0 #43e97b; } 100% { box-shadow: 0 0 0 #ff6584; } }\nhtml[data-theme='dark'] .input-glitch { background: #181a1b; color: #6c63ff; }`,
+        js: `// No JS needed for Glitch Input by abbas davarpanah`
+      },
+      {
+        serial: 'INP-005',
+        name: 'Light Glow Input',
+        type: 'input',
+        html: `<span class=\"input-glow-group\"><input class=\"input-glow\" placeholder=\"Light Glow\"></span>` ,
+        css: `/* Light Glow Input by abbas davarpanah */\n.input-glow-group { position: relative; width: 100%; }\n.input-glow { width: 100%; padding: 1.1em 1.2em; border: 2px solid #43e97b; border-radius: 1.2em; background: #fff; color: #43e97b; font-size: 1.1em; outline: none; box-shadow: 0 0 0 #43e97b; transition: box-shadow 0.3s, border 0.3s; }\n.input-glow:focus { border: 2px solid #ff6584; box-shadow: 0 0 24px #43e97b, 0 0 48px #ff6584; }\nhtml[data-theme='dark'] .input-glow { background: #23272f; color: #43e97b; }`,
+        js: `// No JS needed for Light Glow Input by abbas davarpanah`
+      },
+    ];
+    // Render Buttons
+    function renderButtons() {
+      const clickGrid = document.getElementById('clickButtons');
+      const slideGrid = document.getElementById('slideButtons');
+      const switchGrid = document.getElementById('switchButtons');
+      const inputGrid = document.getElementById('inputForms');
+      clickGrid.innerHTML = '';
+      slideGrid.innerHTML = '';
+      switchGrid.innerHTML = '';
+      inputGrid.innerHTML = '';
+      BUTTONS.forEach(btn => {
+        const demo = document.createElement('div');
+        demo.className = 'btn-demo';
+        demo.innerHTML = `
+          <div class="btn-label">${btn.name} <span style="font-size:0.85em;opacity:0.7;">(${btn.serial})</span></div>
+          <div class="btn-preview">${btn.html.replace(/\\"/g, '"')}</div>
+          <button class="btn-code" data-serial="${btn.serial}">Show Source</button>
+        `;
+        if(btn.type === 'click') clickGrid.appendChild(demo);
+        else if(btn.type === 'slide') slideGrid.appendChild(demo);
+        else if(btn.type === 'switch') switchGrid.appendChild(demo);
+        else if(btn.type === 'input') inputGrid.appendChild(demo);
+      });
+    }
+    renderButtons();
+    // Modal Logic
+    const codeModal = document.getElementById('codeModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalContent = document.getElementById('modalContent');
+    document.body.addEventListener('click', function(e) {
+      if(e.target.classList.contains('btn-code')) {
+        const serial = e.target.getAttribute('data-serial');
+        const btn = BUTTONS.find(b => b.serial === serial);
+        if(btn) {
+          modalTitle.textContent = `${btn.name} (${btn.serial})`;
+          modalContent.innerHTML = `
+            <b>HTML</b><pre>${escapeHtml(btn.html.replace(/\\"/g, '"'))}</pre>
+            <b>CSS</b><pre>${escapeHtml(btn.css)}</pre>
+            <b>JavaScript</b><pre>${escapeHtml(btn.js)}</pre>
+            <div style="margin-top:1em;font-size:0.95em;opacity:0.7;">Author: abbas davarpanah</div>
+          `;
+          codeModal.classList.add('active');
+        }
+      }
+      if(e.target.id === 'closeModal' || e.target === codeModal) {
+        codeModal.classList.remove('active');
+      }
+    });
+    function escapeHtml(str) {
+      return str.replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+    }
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    }
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      setTheme(current === 'light' ? 'dark' : 'light');
+    });
+    // Init theme
+    (function(){
+      const saved = localStorage.getItem('theme');
+      setTheme(saved || 'light');
+    })();
+    // Search Logic
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+    const searchResult = document.getElementById('searchResult');
+    let lastFoundSerial = null;
+    searchForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const val = searchInput.value.trim().toLowerCase();
+      if(!val) return;
+      const btn = BUTTONS.find(b => b.name.toLowerCase().includes(val) || b.serial.toLowerCase() === val);
+      if(btn) {
+        searchResult.innerHTML = `Found: <b>${btn.name}</b> (<b>${btn.serial}</b>) <button class='btn-code' data-serial='${btn.serial}' style='margin-left:1em;'>Show Source</button>`;
+        lastFoundSerial = btn.serial;
+      } else {
+        searchResult.textContent = 'No button found.';
+        lastFoundSerial = null;
+      }
+    });
+    // Modal close on ESC
+    window.addEventListener('keydown', function(e) {
+      if(e.key === 'Escape') codeModal.classList.remove('active');
+    });
+    // --- Ripple Input JS ---
+    document.querySelectorAll('.input-ripple').forEach(input => {
+      input.addEventListener('focus', function(e) {
+        const group = input.parentElement;
+        const ripple = group.querySelector('.ripple');
+        if(ripple) {
+          ripple.style.left = (input.offsetWidth/2-10)+'px';
+          ripple.style.top = (input.offsetHeight/2-10)+'px';
+          ripple.style.width = ripple.style.height = '20px';
+          ripple.classList.remove('show');
+          void ripple.offsetWidth;
+          ripple.classList.add('show');
+        }
+      });
+    });
+    // --- Music Players Data & Render ---
+    const MUSIC_PLAYERS = [
+      {
+        name: 'Glassmorphism + Glow',
+        artist: 'abbas davarpanah',
+        cover: 'https://i.imgur.com/8Km9tLL.jpg',
+        src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+        theme: 'glass',
+        html: `<div class=\"music-player-demo music-player-glass\">...</div>`,
+        css: `/* Glassmorphism + Glow Player by abbas davarpanah */ ...`,
+        js: `// Glassmorphism + Glow Player by abbas davarpanah ...`
+      },
+      {
+        name: 'Neon Night',
+        artist: 'abbas davarpanah',
+        cover: 'https://i.imgur.com/1bX5QH6.jpg',
+        src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+        theme: 'neon',
+        html: `<div class=\"music-player-demo music-player-neon\">...</div>`,
+        css: `/* Neon Night Player by abbas davarpanah */ ...`,
+        js: `// Neon Night Player by abbas davarpanah ...`
+      },
+      {
+        name: 'Waveform Canvas',
+        artist: 'abbas davarpanah',
+        cover: 'https://i.imgur.com/8Km9tLL.jpg',
+        src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
+        theme: 'wave',
+        html: `<div class=\"music-player-demo music-player-wave\">...</div>`,
+        css: `/* Waveform Canvas Player by abbas davarpanah */ ...`,
+        js: `// Waveform Canvas Player by abbas davarpanah ...`
+      },
+      {
+        name: '3D Card Flip',
+        artist: 'abbas davarpanah',
+        cover: 'https://i.imgur.com/1bX5QH6.jpg',
+        src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3',
+        theme: '3d',
+        html: `<div class=\"music-player-demo music-player-3d\">...</div>`,
+        css: `/* 3D Card Flip Player by abbas davarpanah */ ...`,
+        js: `// 3D Card Flip Player by abbas davarpanah ...`
+      },
+      {
+        name: 'Minimal Modern + Animated Gradient',
+        artist: 'abbas davarpanah',
+        cover: 'https://i.imgur.com/8Km9tLL.jpg',
+        src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3',
+        theme: 'minimal',
+        html: `<div class=\"music-player-demo music-player-minimal\">...</div>`,
+        css: `/* Minimal Modern + Animated Gradient Player by abbas davarpanah */ ...`,
+        js: `// Minimal Modern + Animated Gradient Player by abbas davarpanah ...`
+      }
+    ];
+    function renderMusicPlayers() {
+      const container = document.getElementById('musicPlayers');
+      container.innerHTML = '';
+      MUSIC_PLAYERS.forEach((player, idx) => {
+        const div = document.createElement('div');
+        div.className = `music-player-demo music-player-${player.theme}`;
+        div.innerHTML = `
+          <button class="mp-source-btn" data-mp="${idx}">Show Source</button>
+          <img class="mp-cover" src="${player.cover}" alt="cover" />
+          <div class="mp-title">${player.name}</div>
+          <div class="mp-artist">${player.artist}</div>
+          ${player.theme==='wave'?'<canvas class="mp-waveform-canvas"></canvas>':''}
+          <div class="mp-controls">
+            <button class="mp-btn mp-prev" title="Prev"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M6 12l8.5 6V6z"/></svg></button>
+            <button class="mp-btn mp-play" title="Play/Pause"><svg width="28" height="28" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="currentColor" opacity=".12"/><path fill="currentColor" d="M8 5v14l11-7z"/></svg></button>
+            <button class="mp-btn mp-next" title="Next"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M18 12l-8.5 6V6z"/></svg></button>
+          </div>
+          <div class="mp-progress"><div class="mp-progress-bar"></div></div>
+          <div class="mp-time"><span class="mp-current">0:00</span><span class="mp-duration">0:00</span></div>
+          <div class="mp-volume"><svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3z"/></svg><input type="range" min="0" max="1" step="0.01" value="0.7"></div>
+          <div class="mp-credit">by abbas davarpanah</div>
+        `;
+        container.appendChild(div);
+      });
+    }
+    renderMusicPlayers();
+    // Music Player Logic (one audio instance, controls all players)
+    let currentAudio = null, currentIdx = null, progressInterval = null;
+    function formatTime(sec) { sec = Math.floor(sec); return `${Math.floor(sec/60)}:${('0'+(sec%60)).slice(-2)}`; }
+    document.getElementById('musicPlayers').addEventListener('click', function(e) {
+      const mp = e.target.closest('.music-player-demo');
+      if(!mp) return;
+      const idx = [...this.children].indexOf(mp);
+      if(e.target.closest('.mp-play')) {
+        playMusic(idx, mp);
+      } else if(e.target.closest('.mp-prev')) {
+        playMusic((idx-1+MUSIC_PLAYERS.length)%MUSIC_PLAYERS.length, this.children[(idx-1+MUSIC_PLAYERS.length)%MUSIC_PLAYERS.length]);
+      } else if(e.target.closest('.mp-next')) {
+        playMusic((idx+1)%MUSIC_PLAYERS.length, this.children[(idx+1)%MUSIC_PLAYERS.length]);
+      } else if(e.target.closest('.mp-source-btn')) {
+        const p = MUSIC_PLAYERS[idx];
+        modalTitle.textContent = `${p.name}`;
+        modalContent.innerHTML = `<b>HTML</b><pre>${escapeHtml(p.html)}</pre><b>CSS</b><pre>${escapeHtml(p.css)}</pre><b>JavaScript</b><pre>${escapeHtml(p.js)}</pre><div style='margin-top:1em;font-size:0.95em;opacity:0.7;'>Author: abbas davarpanah</div>`;
+        codeModal.classList.add('active');
+      }
+    });
+    function playMusic(idx, mp) {
+      if(currentAudio) { currentAudio.pause(); currentAudio = null; clearInterval(progressInterval); }
+      const p = MUSIC_PLAYERS[idx];
+      const audio = new Audio(p.src);
+      currentAudio = audio; currentIdx = idx;
+      const playBtn = mp.querySelector('.mp-play');
+      const progressBar = mp.querySelector('.mp-progress-bar');
+      const currentTime = mp.querySelector('.mp-current');
+      const duration = mp.querySelector('.mp-duration');
+      const volume = mp.querySelector('input[type=range]');
+      audio.volume = volume.value;
+      audio.addEventListener('loadedmetadata', ()=>{
+        duration.textContent = formatTime(audio.duration);
+      });
+      audio.addEventListener('timeupdate', ()=>{
+        progressBar.style.width = (audio.currentTime/audio.duration*100)+"%";
+        currentTime.textContent = formatTime(audio.currentTime);
+      });
+      audio.addEventListener('ended', ()=>{
+        playMusic((idx+1)%MUSIC_PLAYERS.length, mp.parentElement.children[(idx+1)%MUSIC_PLAYERS.length]);
+      });
+      volume.oninput = function() { audio.volume = this.value; };
+      playBtn.innerHTML = '<svg width="28" height="28" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="currentColor" opacity=".12"/><rect x="7" y="6" width="3.5" height="12" rx="1.5" fill="currentColor"/><rect x="13.5" y="6" width="3.5" height="12" rx="1.5" fill="currentColor"/></svg>';
+      audio.play();
+      progressInterval = setInterval(()=>{
+        if(audio.ended) clearInterval(progressInterval);
+      }, 500);
+      // Pause others
+      [...mp.parentElement.children].forEach((el,i)=>{ if(i!==idx) el.querySelector('.mp-play').innerHTML = '<svg width="28" height="28" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="currentColor" opacity=".12"/><path fill="currentColor" d="M8 5v14l11-7z"/></svg>'; });
+      // Waveform animation for Waveform Canvas player
+      if(mp.classList.contains('music-player-wave')) {
+        const canvas = mp.querySelector('.mp-waveform-canvas');
+        if(canvas) animateWaveform(canvas, audio);
+      }
+    }
+    // --- Waveform Canvas Animation ---
+    function animateWaveform(canvas, audio) {
+      const ctx = canvas.getContext('2d');
+      let w = canvas.width = canvas.offsetWidth, h = canvas.height = canvas.offsetHeight;
+      let t = 0;
+      function draw() {
+        ctx.clearRect(0,0,w,h);
+        ctx.save();
+        ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--primary');
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        for(let x=0;x<w;x+=4) {
+          let y = h/2 + Math.sin((x/32)+t)*h/4*Math.max(0.2,audio.currentTime/audio.duration||0.2);
+          ctx.lineTo(x,y);
+        }
+        ctx.stroke();
+        ctx.restore();
+        t += 0.08 + (audio.paused?0:0.04);
+        if(!audio.paused && !audio.ended) requestAnimationFrame(draw);
+      }
+      draw();
+    }
+  </script>
+</body>
+</html> 
